@@ -1,0 +1,75 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    // Collection: users
+    // Document ID: userId (uid)
+    // Fields: uid, email, displayName, balance, createdAt
+    //
+    // Collection: users/{userId}/cards
+    // Document ID: cardId
+    // Fields: uid, cardName, cardNumber, expiryDate, cvv, createdAt
+    //
+    // Collection: users/{userId}/transactions
+    // Document ID: transactionId
+    // Fields: uid, amount, type, timestamp, status
+    // ===============================================================
+
+    // Helper Functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+          (request.auth.token.email == "dusanzvicer83@gmail.com" && request.auth.token.email_verified == true));
+    }
+
+    function isValidUser(data) {
+      return data.keys().hasAll(['uid', 'email', 'balance']) &&
+             data.uid == request.auth.uid &&
+             data.balance is number &&
+             data.balance >= 0;
+    }
+
+    function isValidCard(data) {
+      return data.keys().hasAll(['uid', 'cardName', 'cardNumber', 'expiryDate']) &&
+             data.uid == request.auth.uid &&
+             data.cardName is string && data.cardName.size() > 0 &&
+             data.cardNumber is string && data.cardNumber.size() >= 13 &&
+             data.expiryDate is string && data.expiryDate.matches('^[0-9]{2}/[0-9]{2}$');
+    }
+
+    function isValidTransaction(data) {
+      return data.keys().hasAll(['uid', 'amount', 'type', 'timestamp']) &&
+             data.uid == request.auth.uid &&
+             data.amount is number && data.amount > 0 &&
+             data.type in ['TO_PIGGY', 'FROM_PIGGY'];
+    }
+
+    match /users/{userId} {
+      allow read: if isOwner(userId);
+      allow create: if isOwner(userId) && isValidUser(request.resource.data);
+      allow update: if isOwner(userId) && isValidUser(request.resource.data);
+
+      match /cards/{cardId} {
+        allow read: if isOwner(userId);
+        allow create: if isOwner(userId) && isValidCard(request.resource.data);
+        allow update: if isOwner(userId) && isValidCard(request.resource.data);
+        allow delete: if isOwner(userId);
+      }
+
+      match /transactions/{transactionId} {
+        allow read: if isOwner(userId);
+        allow create: if isOwner(userId) && isValidTransaction(request.resource.data);
+      }
+    }
+  }
+}

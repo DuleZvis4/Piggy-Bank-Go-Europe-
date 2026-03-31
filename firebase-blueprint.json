@@ -1,0 +1,61 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and piggy bank balance.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "balance": { "type": "number", "description": "Piggy bank balance in Euro" },
+        "preferredCurrency": { "type": "string", "description": "User's preferred currency code (EUR, RSD, USD, etc.)" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "balance"]
+    },
+    "Card": {
+      "title": "Credit/Debit Card",
+      "description": "Stored card information (encrypted/masked in real apps, but here stored for demo).",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "cardName": { "type": "string" },
+        "cardNumber": { "type": "string", "description": "Masked or full card number" },
+        "expiryDate": { "type": "string", "description": "MM/YY" },
+        "cvv": { "type": "string", "description": "CVV (should be handled securely)" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "cardName", "cardNumber", "expiryDate"]
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "description": "History of transfers between card and piggy bank.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "amount": { "type": "number", "description": "Amount in original currency" },
+        "currency": { "type": "string", "description": "Currency of the transaction" },
+        "amountEur": { "type": "number", "description": "Amount converted to EUR" },
+        "type": { "type": "string", "enum": ["TO_PIGGY", "FROM_PIGGY"] },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["COMPLETED", "FAILED"] }
+      },
+      "required": ["uid", "amount", "currency", "amountEur", "type", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile and balance"
+    },
+    "/users/{userId}/cards/{cardId}": {
+      "schema": "Card",
+      "description": "User's stored cards"
+    },
+    "/users/{userId}/transactions/{transactionId}": {
+      "schema": "Transaction",
+      "description": "User's transaction history"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "name": "Piggy Bank Go Europe",
+  "description": "Secure digital piggy bank for users in Montenegro, Serbia, Croatia, and Europe. Supports Euro and Dinar with English and Serbian language options.",
+  "requestFramePermissions": ["geolocation"]
+}
