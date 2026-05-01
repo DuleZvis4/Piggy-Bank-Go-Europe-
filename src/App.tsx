@@ -69,7 +69,7 @@ import { motion, AnimatePresence } from 'motion/react';
 const translations = {
   en: {
     serviceUnavailable: "Service Unavailable",
-    onlyAvailableIn: "Piggy Bank Go is available to all users in the European region.",
+    onlyAvailableIn: "Sonya AI Assistant is available to all users in the European region.",
     ensureLocation: "Please ensure location services are enabled and you are in a supported region.",
     secureSavings: "Secure savings for your region.",
     continueWithGoogle: "Continue with Google",
@@ -165,7 +165,7 @@ const translations = {
     endDate: "End Date",
     clearFilters: "Clear Filters",
     aboutApp: "About App",
-    aboutDesc: "Piggy Bank Go Europe is your secure digital companion for managing savings across the European region. We provide bank-grade security and real-time cloud synchronization.",
+    aboutDesc: "Sonya AI Assistant is your secure digital companion for managing smart financial workflows across the European region. We provide bank-grade security and real-time cloud synchronization.",
     tutorial: "Tutorial",
     howItWorks: "How it Works",
     step1Title: "Connect your Bank",
@@ -216,7 +216,7 @@ const translations = {
   },
   sr: {
     serviceUnavailable: "Usluga nedostupna",
-    onlyAvailableIn: "Piggy Bank Go je dostupan svim korisnicima u evropskom regionu.",
+    onlyAvailableIn: "Sonya AI Assistant je dostupan svim korisnicima u evropskom regionu.",
     ensureLocation: "Molimo proverite da li su usluge lokacije omogućene i da li ste u podržanom regionu.",
     secureSavings: "Sigurna štednja za vaš region.",
     continueWithGoogle: "Nastavi sa Google-om",
@@ -312,7 +312,7 @@ const translations = {
     endDate: "Krajnji datum",
     clearFilters: "Očisti filtere",
     aboutApp: "O aplikaciji",
-    aboutDesc: "Piggy Bank Go Europe je vaš sigurni digitalni pratilac za upravljanje štednjom širom evropskog regiona. Pružamo sigurnost bankarskog nivoa i sinhronizaciju u oblaku u realnom vremenu.",
+    aboutDesc: "Sonya AI Assistant je vaš sigurni digitalni pratilac za pametno upravljanje finansijskim tokovima širom evropskog regiona. Pružamo sigurnost bankarskog nivoa i sinhronizaciju u oblaku u realnom vremenu.",
     tutorial: "Tutorijal",
     howItWorks: "Kako funkcioniše",
     step1Title: "Povežite svoju banku",
@@ -673,7 +673,7 @@ function PiggyBankApp() {
 
   const tutorialSteps = [
     {
-      title: lang === 'sr' ? 'Dobrodošli u Piggy Bank Go' : 'Welcome to Piggy Bank Go',
+      title: lang === 'sr' ? 'Dobrodošli u Sonya AI Assistant' : 'Welcome to Sonya AI Assistant',
       description: lang === 'sr' ? 'Vaša sigurna kasica za štednju u Evropi. Naučite kako da koristite aplikaciju u nekoliko koraka.' : 'Your secure savings piggy bank in Europe. Learn how to use the app in a few steps.',
       icon: <PiggyBank className="w-12 h-12 text-blue-600" />
     },
@@ -1172,7 +1172,7 @@ function PiggyBankApp() {
           <div className="w-20 h-20 bg-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-200">
             <PiggyBank className="w-10 h-10 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2 tracking-tight">Piggy Bank Go</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2 tracking-tight">Sonya AI Assistant</h1>
           <p className="text-gray-500 mb-8">{t.secureSavings}</p>
           
           <button 
@@ -1254,7 +1254,7 @@ function PiggyBankApp() {
           <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
             <PiggyBank className="w-6 h-6 text-white" />
           </div>
-          <span className="font-bold text-xl tracking-tight">Piggy Bank Go</span>
+          <span className="font-bold text-xl tracking-tight">Sonya AI Assistant</span>
         </div>
         <div className="flex items-center gap-2">
           <button 
@@ -2321,7 +2321,7 @@ function PiggyBankApp() {
 
                 <div className="space-y-6">
                   <p className="text-gray-600 leading-relaxed">
-                    Piggy Bank Go is a premier digital savings application designed for the European market. Our mission is to provide a secure, intuitive, and efficient way for users to manage their savings and connect with their financial institutions across the continent.
+                    Sonya AI Assistant is an intelligent financial companion designed for the European market. Our mission is to provide a secure, intuitive, and efficient AI-powered way for users to manage savings and connect with financial institutions across the continent.
                   </p>
                   
                   <div className="grid grid-cols-2 gap-4">
@@ -2339,7 +2339,7 @@ function PiggyBankApp() {
 
                   <div className="pt-4 border-t border-gray-100">
                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Version 2.4.0 (Stable)</p>
-                    <p className="text-[10px] text-gray-400">© 2026 Piggy Bank Go Europe. All rights reserved.</p>
+                    <p className="text-[10px] text-gray-400">© 2026 Sonya AI Assistant. All rights reserved.</p>
                   </div>
                 </div>
               </motion.div>
